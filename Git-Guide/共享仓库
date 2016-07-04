@@ -1,0 +1,22 @@
+http://www.gitguys.com/topics/creating-a-shared-repository-users-sharing-the-repository/?lang=zh
+当创建共享从仓库（与多人分享m，push，pull）则需要创建裸仓库 bare repo 通常以.git结尾提示别人为裸仓库。
+甚至没有master、
+
+
+Shared Repositories Should Be Bare Repositories
+When creating a central repository that will be shared by other users, the repositories should be created with the –bare option:
+
+gitadmin$ git init --bare project1.git
+Initialized empty Git repository in /home/gitadmin/project1.git/
+
+When you create a git repository with the –bare option:
+
+    There is no working directory created.
+    There is no .git directory created. Instead, the files normally in the .git directory are placed in the top-level directory where the working directory would normally be.
+
+gitadmin$ cd project1.git
+gitadmin$ ls
+branches/  config  description  HEAD  hooks/  info/  objects/  refs/
+
+刚刚init -bare 的仓库是空的 没有master.非远程v仓库创建人push的时候需指定branch，创建人push时若是被refuse 则在r远程仓库切换一个临时分支并推送到临时分支上
+然后把远程分支从临时分支切换回master
